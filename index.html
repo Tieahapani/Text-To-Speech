@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text to Speech</title>
+    <style>
+        /* Basic styling to make it look nice */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .form-group {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text to Speech Converter</h1>
+    
+    <!-- Form to submit text -->
+    <form method="POST">
+        <div class="form-group">
+            <label for="text">Enter your text:</label>
+            <textarea name="text" id="text" required></textarea>
+        </div>
+        <button type="submit">Convert to Speech</button>
+    </form>
+
+    <!-- Audio player (only shows up after text is converted) -->
+    {% if audio_created %}
+    <div class="form-group" style="margin-top: 20px;">
+        <h2>Your Audio:</h2>
+        <audio controls>
+            <source src="{{ url_for('static', filename='audio/speech.mp3') }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    {% endif %}
+</body>
+</html>
